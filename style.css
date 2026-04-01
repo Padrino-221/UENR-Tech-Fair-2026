@@ -66,6 +66,14 @@ h1, h2, h3, h4 {
     padding: 140px 0;
 }
 
+@media screen and (max-width: 992px) {
+    .section-padding { padding: 80px 0; }
+}
+
+@media screen and (max-width: 480px) {
+    .section-padding { padding: 60px 0; }
+}
+
 @media screen and (max-width: 768px) {
     .section-padding { padding: 80px 0; }
 }
@@ -184,6 +192,10 @@ nav.scrolled {
     .nav-links.active {
         right: 0;
     }
+    
+    .nav-links a {
+        font-size: 1.2rem;
+    }
 }
 
 .logo {
@@ -274,6 +286,22 @@ nav.scrolled {
     }
 }
 
+@media screen and (max-width: 480px) {
+    .hero-visual {
+        height: auto !important;
+        aspect-ratio: 4 / 3;
+    }
+    
+    .hero-visual > div {
+        height: 100% !important;
+        gap: 1rem !important;
+    }
+    
+    .hero-visual img {
+        width: 80% !important;
+    }
+}
+
 .hero-glow {
     position: absolute;
     top: 10%;
@@ -346,16 +374,35 @@ nav.scrolled {
 }
 
 @media screen and (max-width: 768px) {
-    .hero h1 { font-size: 2.5rem !important; }
+    .hero h1 { font-size: 2.8rem !important; }
     .hero p { font-size: 1rem !important; }
     
     header h1 { font-size: 2.8rem !important; }
-    header p { font-size: 0.9rem !important; }
+    header p { font-size: 0.95rem !important; }
 }
 
 @media screen and (max-width: 480px) {
-    .hero h1 { font-size: 2.2rem !important; }
-    .container { padding: 0 1rem; }
+    .hero h1 { font-size: 2.4rem !important; line-height: 1.2; }
+    header h1 { font-size: 2.4rem !important; }
+    .container { padding: 0 1.25rem; }
+    
+    .countdown-banner {
+        gap: 0.75rem !important;
+        padding: 0.5rem 1rem !important;
+    }
+    
+    .countdown-banner span {
+        font-size: 1rem !important;
+    }
+    
+    .countdown-banner div[style*="width: 1px"] {
+        height: 10px !important;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .hero h1 { font-size: 2.1rem !important; }
+    .hero p { font-size: 0.95rem !important; }
 }
 
 /* Modal Styling */
@@ -389,9 +436,27 @@ nav.scrolled {
     animation: modalSlide 0.5s var(--bezier);
 }
 
-@keyframes modalSlide {
-    from { transform: translateY(40px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+@media screen and (max-width: 480px) {
+    .hero-btns {
+        flex-direction: column;
+        gap: 0.75rem !important;
+    }
+    
+    .hero-btns button, .hero-btns a {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .modal-content {
+        padding: 2rem;
+        border-radius: var(--radius-md);
+    }
+    
+    .modal-content h2 {
+        font-size: 1.8rem !important;
+    }
 }
 
 .close-modal {
