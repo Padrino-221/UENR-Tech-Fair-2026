@@ -77,10 +77,6 @@ h1, h2, h3, h4 {
     .container { padding: 0 1.5rem; }
 }
 
-@media screen and (max-width: 768px) {
-    .section-padding { padding: 80px 0; }
-}
-
 /* SaaS Buttons */
 .btn {
     padding: 0.75rem 1.75rem;
@@ -112,11 +108,6 @@ h1, h2, h3, h4 {
     color: white;
 }
 
-.btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
 /* Navigation - Clean SaaS Sticky */
 nav {
     position: fixed;
@@ -135,7 +126,7 @@ nav {
     align-items: center;
     background: var(--bg-glass);
     border: 1px solid var(--border-glass);
-    padding: 0.75rem 2.5rem;
+    padding: 0.75rem 4rem;
     border-radius: 100px;
     backdrop-filter: blur(20px);
     box-shadow: 0 10px 40px rgba(0,0,0,0.3);
@@ -177,15 +168,6 @@ nav {
 
 .nav-links a:hover::after, .nav-links a.active::after {
     transform: translateX(-50%) scaleX(1);
-}
-
-@media screen and (max-width: 480px) {
-    .nav-btn-group .btn-secondary {
-        display: none !important;
-    }
-    .nav-btn-group {
-        gap: 0.5rem !important;
-    }
 }
 
 /* Mobile Toggle */
@@ -305,6 +287,52 @@ nav {
     margin-bottom: 1rem;
 }
 
+/* Hero Section */
+.hero {
+    padding-top: 260px; /* Increased to avoid navbar overlap */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(8, 1, 139, 0.4), transparent 70%);
+    z-index: -1;
+}
+
+.hero-visual {
+    margin-top: 6rem;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-glass);
+    background: var(--bg-card);
+    padding: 8px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-glow {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 61, 200, 0.25) 0%, transparent 70%);
+    filter: blur(80px);
+    z-index: -1;
+}
+
 /* Custom Cursor */
 #cursor {
     width: 20px;
@@ -338,11 +366,7 @@ nav {
     overflow: hidden;
 }
 
-.member-card:hover {
-    border-color: var(--accent-cyan);
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
+.member-card:hover { border-color: var(--accent-cyan); transform: translateY(-8px); }
 
 .member-avatar-wrapper {
     position: relative;
@@ -354,21 +378,13 @@ nav {
 
 .avatar-glow {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 160px;
-    height: 160px;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 160px; height: 160px;
     background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
-    opacity: 0.15;
-    z-index: 1;
-    transition: var(--transition);
+    opacity: 0.15; z-index: 1; transition: var(--transition);
 }
 
-.member-card:hover .avatar-glow {
-    opacity: 0.3;
-    transform: translate(-50%, -50%) scale(1.2);
-}
+.member-card:hover .avatar-glow { opacity: 0.3; transform: translate(-50%, -50%) scale(1.2); }
 
 .member-avatar {
     width: 140px;
@@ -381,26 +397,10 @@ nav {
     z-index: 2;
 }
 
-.member-avatar img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-}
+.member-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
-.member-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.member-role {
-    font-size: 0.85rem;
-    color: var(--accent-cyan);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+.member-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+.member-role { font-size: 0.85rem; color: var(--accent-cyan); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
 .team-badge {
     display: inline-block;
@@ -444,42 +444,21 @@ nav {
     transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.gallery-card:hover img {
-    transform: scale(1.1);
-}
+.gallery-card:hover img { transform: scale(1.1); }
 
 .gallery-info {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    bottom: 0; left: 0; width: 100%;
     padding: 3rem 2rem 2rem;
     background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s var(--bezier);
-    z-index: 5;
+    opacity: 0; transform: translateY(20px);
+    transition: all 0.5s var(--bezier); z-index: 5;
 }
 
-.gallery-card:hover .gallery-info {
-    opacity: 1;
-    transform: translateY(0);
-}
+.gallery-card:hover .gallery-info { opacity: 1; transform: translateY(0); }
 
-.gallery-label {
-    color: var(--accent-cyan);
-    font-size: 0.7rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 0.5rem;
-}
-
-.gallery-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: white;
-}
+.gallery-label { color: var(--accent-cyan); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; }
+.gallery-title { font-size: 1.4rem; font-weight: 700; color: white; }
 
 /* =========================================
    EVENT SCHEDULE PAGE
@@ -493,47 +472,21 @@ nav {
 
 .timeline-spine {
     position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(180deg, 
-        transparent 0%, 
-        var(--border-glass) 15%, 
-        var(--border-glass) 85%, 
-        transparent 100%
-    );
-    transform: translateX(-50%);
-    z-index: 1;
+    left: 50%; top: 0; bottom: 0; width: 2px;
+    background: linear-gradient(180deg, transparent 0%, var(--border-glass) 15%, var(--border-glass) 85%, transparent 100%);
+    transform: translateX(-50%); z-index: 1;
 }
 
-.timeline-node {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 120px;
-    z-index: 2;
-}
-
+.timeline-node { position: relative; display: flex; justify-content: center; align-items: center; margin-bottom: 120px; z-index: 2; }
 .node-marker {
-    width: 14px;
-    height: 14px;
-    background: var(--bg-black);
-    border: 2px solid var(--accent-cyan);
-    border-radius: 50%;
-    box-shadow: 0 0 20px var(--accent-cyan);
-    position: absolute;
-    left: 50%;
-    top: 30px;
-    transform: translateX(-50%);
+    width: 14px; height: 14px;
+    background: var(--bg-black); border: 2px solid var(--accent-cyan);
+    border-radius: 50%; box-shadow: 0 0 20px var(--accent-cyan);
+    position: absolute; left: 50%; top: 30px; transform: translateX(-50%);
     transition: var(--transition);
 }
 
-.timeline-node:hover .node-marker {
-    transform: translateX(-50%) scale(1.5);
-    background: var(--accent-cyan);
-}
+.timeline-node:hover .node-marker { transform: translateX(-50%) scale(1.5); background: var(--accent-cyan); }
 
 .event-card {
     width: 42%;
@@ -582,6 +535,48 @@ nav {
     transform: translateY(0);
 }
 
+/* Trust Badges - Marquee-like Flow */
+.trust-badges-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    opacity: 0.6;
+    filter: grayscale(1);
+    transition: var(--transition);
+}
+
+.trust-badges-container:hover {
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+/* Pricing Table (SaaS Feel) */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.pricing-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+}
+
+.pricing-card.premium {
+    border-color: var(--primary-blue);
+    background: rgba(0, 61, 200, 0.05);
+    box-shadow: var(--shadow-glow);
+    padding: 4rem 2rem;
+}
+
 /* Hero Carousel */
 .carousel-container {
     position: relative;
@@ -627,6 +622,7 @@ nav {
     .node-marker { left: 30px; top: 40px; }
     .event-card { width: calc(100% - 80px); margin-left: 80px !important; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
+    .trust-badges-container { justify-content: center; gap: 2rem; }
 }
 
 @media screen and (max-width: 480px) {
