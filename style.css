@@ -44,8 +44,8 @@ body {
 
 /* Typography Enhancements */
 h1, h2, h3, h4 {
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
 }
 
 .gradient-text {
@@ -71,7 +71,9 @@ h1, h2, h3, h4 {
 }
 
 @media screen and (max-width: 480px) {
-    .section-padding { padding: 50px 0; }
+    .hero h1 { font-size: 2.5rem !important; line-height: 1.2; }
+    h2 { font-size: 2.2rem !important; }
+    header h1 { font-size: 2.4rem !important; }
     .container { padding: 0 1.5rem; }
 }
 
