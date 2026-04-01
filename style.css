@@ -285,6 +285,18 @@ nav {
     color: white;
     font-family: inherit;
     margin-bottom: 1rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.form-input:focus {
+    border-color: var(--primary-blue);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.form-input option {
+    background: #050505;
+    color: white;
 }
 
 /* Hero Section */
