@@ -10,30 +10,80 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="SVG/Favicon.svg">
     <style>
-        .gallery-item {
-            position: relative;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            height: 350px;
-            border: 1px solid var(--border-glass);
+        .gallery-wrap {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem 0;
         }
-        .gallery-item img {
+
+        .gallery-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            height: 450px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .gallery-card:nth-child(2) { height: 550px; }
+        .gallery-card:nth-child(5) { height: 500px; }
+
+        .gallery-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .gallery-item:hover img {
-            transform: scale(1.05);
+
+        .gallery-card:hover img {
+            transform: scale(1.1);
         }
-        .gallery-overlay {
+
+        .gallery-info {
             position: absolute;
-            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.9));
-            bottom: 0; left: 0; width: 100%; padding: 2rem;
-            opacity: 0; transition: var(--transition);
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 3rem 2rem 2rem;
+            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s var(--bezier);
+            z-index: 5;
         }
-        .gallery-item:hover .gallery-overlay {
+
+        .gallery-card:hover .gallery-info {
             opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-label {
+            color: var(--accent-cyan);
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.3;
+        }
+
+        @media screen and (max-width: 992px) {
+            .gallery-wrap { grid-template-columns: repeat(2, 1fr); }
+            .gallery-card { height: 400px !important; }
+        }
+
+        @media screen and (max-width: 480px) {
+            .gallery-wrap { grid-template-columns: 1fr; gap: 1.5rem; }
+            .gallery-card { height: 350px !important; }
         }
     </style>
 </head>
@@ -41,7 +91,7 @@
     <div id="cursor"></div>
 
     <!-- Navigation -->
-    <nav id="navbar" class="scrolled">
+    <nav id="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
                 <img src="SVG/Logo Main.svg" alt="UENR Tech Fair Logo" style="height: 50px;">
@@ -51,7 +101,7 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="committees.html">Committees</a></li>
                 <li><a href="event.html">Event</a></li>
-                <li><a href="gallery.html" class="active" style="color:white;">Gallery</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-toggle">
@@ -67,38 +117,62 @@
     <header class="section-padding" style="padding-top: 180px; text-align: center;">
         <div class="hero-glow"></div>
         <div class="container">
-            <h1 style="font-size: 3.5rem;">Visual <span class="gradient-text">Showcase</span></h1>
-            <p style="color: var(--text-dim); max-width: 600px; margin: 1rem auto;">Capturing the moments of digital brilliance and innovation across the years.</p>
+            <h1 style="font-size: 4.5rem; line-height: 1.1;">Visual <span class="gradient-text">Showcase.</span></h1>
+            <p style="color: var(--text-dim); max-width: 650px; margin: 1.5rem auto; font-size: 1.1rem;">A cinematic retrospective of digital brilliance and disruptive innovation over the years.</p>
         </div>
     </header>
 
-    <!-- Gallery Grid -->
+    <!-- Gallery Grid Area -->
     <section class="section-padding" style="padding-top: 0;">
-        <div class="container">               
-            <div class="saas-grid">
-                <div class="gallery-item reveal-on-scroll">
-                    <img src="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Tech Fair Event">
-                    <div class="gallery-overlay"><p style="font-weight: 700;">Student Spotlight 2025</p></div>
+        <div class="container">
+            <div class="gallery-wrap">
+                <!-- Project 1 -->
+                <div class="gallery-card reveal-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Tech Fair Main Event">
+                    <div class="gallery-info">
+                        <div class="gallery-label">EVENT HIGHLIGHT</div>
+                        <h3 class="gallery-title">The Grand Foyer Opening 2025</h3>
+                    </div>
                 </div>
-                <div class="gallery-item reveal-on-scroll" style="transition-delay: 0.1s;">
-                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Innovation">
-                    <div class="gallery-overlay"><p style="font-weight: 700;">AI & ML Prototype Demo</p></div>
+                <!-- Project 2 -->
+                <div class="gallery-card reveal-on-scroll" style="transition-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Innovation Pitch">
+                    <div class="gallery-info">
+                        <div class="gallery-label">STUDENT INNOVATION</div>
+                        <h3 class="gallery-title">AI-Driven Agriculture Prototype Demo</h3>
+                    </div>
                 </div>
-                <div class="gallery-item reveal-on-scroll" style="transition-delay: 0.2s;">
+                <!-- Project 3 -->
+                <div class="gallery-card reveal-on-scroll" style="transition-delay: 0.2s;">
                     <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Networking">
-                    <div class="gallery-overlay"><p style="font-weight: 700;">Industry Mentor Session</p></div>
+                    <div class="gallery-info">
+                        <div class="gallery-label">ECOSYSTEM HUB</div>
+                        <h3 class="gallery-title">Industry-Student Mentorship Lounge</h3>
+                    </div>
                 </div>
-                 <div class="gallery-item reveal-on-scroll" style="transition-delay: 0.3s;">
-                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Collaboration">
-                    <div class="gallery-overlay"><p style="font-weight: 700;">Panel Hall Discussions</p></div>
+                 <!-- Project 4 -->
+                 <div class="gallery-card reveal-on-scroll" style="transition-delay: 0.3s;">
+                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dialogue">
+                    <div class="gallery-info">
+                        <div class="gallery-label">POLICY DIALOGUE</div>
+                        <h3 class="gallery-title">The Future of National Digital Identity Panel</h3>
+                    </div>
                 </div>
-                <div class="gallery-item reveal-on-scroll" style="transition-delay: 0.4s;">
-                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Teamwork">
-                    <div class="gallery-overlay"><p style="font-weight: 700;">The Organizing Leadership</p></div>
+                <!-- Project 5 -->
+                <div class="gallery-card reveal-on-scroll" style="transition-delay: 0.4s;">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Leadership">
+                    <div class="gallery-info">
+                        <div class="gallery-label">LEADERSHIP</div>
+                        <h3 class="gallery-title">Organizers & Technical Stakeholders 2024</h3>
+                    </div>
                 </div>
-                <div class="gallery-item reveal-on-scroll" style="transition-delay: 0.5s;">
-                    <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Development">
-                    <div class="gallery-overlay"><p style="font-weight: 700;">Tech Expo Main Stage</p></div>
+                <!-- Project 6 -->
+                <div class="gallery-card reveal-on-scroll" style="transition-delay: 0.5s;">
+                    <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Tech Expo">
+                    <div class="gallery-info">
+                        <div class="gallery-label">EXHIBITION</div>
+                        <h3 class="gallery-title">Hardware Innovation Showcase Stage</h3>
+                    </div>
                 </div>
             </div>
         </div>

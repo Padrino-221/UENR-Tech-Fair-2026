@@ -10,27 +10,109 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="SVG/Favicon.svg">
     <style>
-        .member-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem auto;
-            border: 2px solid var(--border-glass);
-            padding: 4px;
+        .committee-header {
+            margin-bottom: 5rem;
+            text-align: center;
         }
+
+        .member-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(15px);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .member-avatar-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 2rem auto;
+            z-index: 2;
+        }
+
+        .avatar-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+            opacity: 0.15;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .member-card:hover .avatar-glow {
+            opacity: 0.3;
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        .member-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 2px solid var(--border-glass);
+            padding: 5px;
+            background: var(--bg-black);
+            position: relative;
+            z-index: 2;
+        }
+
         .member-avatar img {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
         }
+
+        .member-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .member-role {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .team-badge {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 4px 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            border: 1px solid var(--border-glass);
+        }
+
+        @media screen and (max-width: 768px) {
+            .member-card { padding: 2.5rem 1.5rem; }
+        }
     </style>
 </head>
 <body id="committees">
     <div id="cursor"></div>
 
-    <!-- SaaS Navigation -->
-    <nav id="navbar" class="scrolled">
+    <!-- Navigation -->
+    <nav id="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
                 <img src="SVG/Logo Main.svg" alt="UENR Tech Fair Logo" style="height: 50px;">
@@ -38,7 +120,7 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="committees.html" class="active" style="color:white;">Committees</a></li>
+                <li><a href="committees.html">Committees</a></li>
                 <li><a href="event.html">Event</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -56,55 +138,98 @@
     <header class="section-padding" style="padding-top: 180px; text-align: center;">
         <div class="hero-glow"></div>
         <div class="container">
-            <h1 style="font-size: 3.5rem;">Leadership <span class="gradient-text">& Teams</span></h1>
-            <p style="color: var(--text-dim); max-width: 600px; margin: 1rem auto;">Meet the team building a digitally advanced Ghana from the center of Sunyani.</p>
+            <h1 style="font-size: 4.5rem; line-height: 1.1;">Leadership <span class="gradient-text">& Teams.</span></h1>
+            <p style="color: var(--text-dim); max-width: 650px; margin: 1.5rem auto; font-size: 1.1rem;">A coalition of visionaries and technical architects building Ghana's premier digital frontier.</p>
         </div>
     </header>
 
-    <!-- Teams -->
+    <!-- Organizing Committee -->
     <section class="section-padding" style="padding-top: 0;">
         <div class="container">
-            <!-- Organizing Committee -->
-            <div style="margin-bottom: 6rem;">
-                <h2 style="font-size: 2rem; margin-bottom: 3rem; text-align: center; color: var(--accent-cyan);">Organizing Committee</h2>
-                <div class="saas-grid">
-                    <div class="saas-card reveal-on-scroll" style="text-align: center;">
-                        <div class="member-avatar"><img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Prof. Isaac Mensah"></div>
-                        <h3>Prof. Isaac Mensah</h3>
-                        <p style="color: var(--text-dim); font-size: 0.85rem;">Organizing Chairman</p>
+            <div class="committee-header">
+                <h2 style="font-size: 2.2rem; color: var(--accent-cyan);">Organizing Committee</h2>
+                <div style="width: 60px; height: 3px; background: var(--accent-cyan); margin: 1rem auto; border-radius: 10px;"></div>
+            </div>
+            <div class="saas-grid">
+                <!-- Member 1 -->
+                <div class="member-card reveal-on-scroll">
+                    <div class="member-avatar-wrapper">
+                        <div class="avatar-glow"></div>
+                        <div class="member-avatar">
+                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Prof. Isaac Mensah">
+                        </div>
                     </div>
-                    <div class="saas-card reveal-on-scroll" style="text-align: center; transition-delay: 0.1s;">
-                        <div class="member-avatar"><img src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Ms. Sarah Afoakwa"></div>
-                        <h3>Ms. Sarah Afoakwa</h3>
-                        <p style="color: var(--text-dim); font-size: 0.85rem;">Lead Secretary</p>
+                    <h3 class="member-name">Prof. Isaac Mensah</h3>
+                    <p class="member-role">Organizing Chairman</p>
+                    <span class="team-badge">EXECUTIVE STRATEGY</span>
+                </div>
+                <!-- Member 2 -->
+                <div class="member-card reveal-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="member-avatar-wrapper">
+                        <div class="avatar-glow"></div>
+                        <div class="member-avatar">
+                            <img src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Ms. Sarah Afoakwa">
+                        </div>
                     </div>
-                    <div class="saas-card reveal-on-scroll" style="text-align: center; transition-delay: 0.2s;">
-                        <div class="member-avatar"><img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Eng. Kofi Asante"></div>
-                        <h3>Eng. Kofi Asante</h3>
-                        <p style="color: var(--text-dim); font-size: 0.85rem;">Logistics Coordinator</p>
+                    <h3 class="member-name">Ms. Sarah Afoakwa</h3>
+                    <p class="member-role">Lead Secretary</p>
+                    <span class="team-badge">OPERATIONS</span>
+                </div>
+                <!-- Member 3 -->
+                <div class="member-card reveal-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="member-avatar-wrapper">
+                        <div class="avatar-glow"></div>
+                        <div class="member-avatar">
+                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Eng. Kofi Asante">
+                        </div>
                     </div>
+                    <h3 class="member-name">Eng. Kofi Asante</h3>
+                    <p class="member-role">Logistics Coordinator</p>
+                    <span class="team-badge">INFRASTRUCTURE</span>
                 </div>
             </div>
 
             <!-- Technical Committee -->
-            <div>
-                <h2 style="font-size: 2rem; margin-bottom: 3rem; text-align: center; color: var(--primary-blue);">Technical Committee</h2>
-                <div class="saas-grid">
-                    <div class="saas-card reveal-on-scroll" style="text-align: center; background: var(--primary-deep); border-color: var(--primary-blue);">
-                        <div class="member-avatar" style="border-color: var(--primary-blue);"><img src="https://images.pexels.com/photos/1212984/pexels-photo-1212984.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Dr. Bright Appiah"></div>
-                        <h3>Dr. Bright Appiah</h3>
-                        <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem;">Technical Lead</p>
+            <div class="committee-header" style="margin-top: 8rem;">
+                <h2 style="font-size: 2.2rem; color: var(--primary-blue);">Technical Committee</h2>
+                <div style="width: 60px; height: 3px; background: var(--primary-blue); margin: 1rem auto; border-radius: 10px;"></div>
+            </div>
+            <div class="saas-grid">
+                <!-- Tech Member 1 -->
+                <div class="member-card reveal-on-scroll" style="border-color: rgba(0, 61, 200, 0.2);">
+                    <div class="member-avatar-wrapper">
+                        <div class="avatar-glow" style="background: radial-gradient(circle, var(--primary-blue) 0%, transparent 70%);"></div>
+                        <div class="member-avatar" style="border-color: var(--primary-blue);">
+                            <img src="https://images.pexels.com/photos/1212984/pexels-photo-1212984.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Dr. Bright Appiah">
+                        </div>
                     </div>
-                    <div class="saas-card reveal-on-scroll" style="text-align: center; transition-delay: 0.1s;">
-                        <div class="member-avatar"><img src="https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Ms. Cynthia Boadi"></div>
-                        <h3>Ms. Cynthia Boadi</h3>
-                        <p style="color: var(--text-dim); font-size: 0.85rem;">Systems Engineer</p>
+                    <h3 class="member-name">Dr. Bright Appiah</h3>
+                    <p class="member-role" style="color: var(--primary-blue);">Technical Lead</p>
+                    <span class="team-badge">SYSTEMS ARCHITECTURE</span>
+                </div>
+                <!-- Tech Member 2 -->
+                <div class="member-card reveal-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="member-avatar-wrapper">
+                        <div class="avatar-glow" style="background: radial-gradient(circle, var(--primary-blue) 0%, transparent 70%);"></div>
+                        <div class="member-avatar" style="border-color: var(--primary-blue);">
+                            <img src="https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Ms. Cynthia Boadi">
+                        </div>
                     </div>
-                    <div class="saas-card reveal-on-scroll" style="text-align: center; transition-delay: 0.2s;">
-                        <div class="member-avatar"><img src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Mr. Emmanuel Sarpong"></div>
-                        <h3>Mr. Emmanuel Sarpong</h3>
-                        <p style="color: var(--text-dim); font-size: 0.85rem;">Junior Researcher</p>
+                    <h3 class="member-name">Ms. Cynthia Boadi</h3>
+                    <p class="member-role" style="color: var(--primary-blue);">Systems Engineer</p>
+                    <span class="team-badge">FULLSTACK DEV</span>
+                </div>
+                <!-- Tech Member 3 -->
+                <div class="member-card reveal-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="member-avatar-wrapper">
+                        <div class="avatar-glow" style="background: radial-gradient(circle, var(--primary-blue) 0%, transparent 70%);"></div>
+                        <div class="member-avatar" style="border-color: var(--primary-blue);">
+                            <img src="https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Mr. Emmanuel Sarpong">
+                        </div>
                     </div>
+                    <h3 class="member-name">Mr. Emmanuel Sarpong</h3>
+                    <p class="member-role" style="color: var(--primary-blue);">Junior Researcher</p>
+                    <span class="team-badge">R&D INNOVATION</span>
                 </div>
             </div>
         </div>
