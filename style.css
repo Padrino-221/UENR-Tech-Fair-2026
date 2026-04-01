@@ -629,3 +629,32 @@ nav {
     .gallery-wrap { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; text-align: center; }
 }
+
+/* Unified Toast Notification */
+#toast, #contact-toast {
+    visibility: hidden;
+    min-width: 300px;
+    background: var(--primary-deep);
+    color: #fff;
+    text-align: center;
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    position: fixed;
+    z-index: 3000;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid var(--border-glass);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity 0.5s, bottom 0.5s, visibility 0.5s;
+}
+
+#toast.show, #contact-toast.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px;
+}

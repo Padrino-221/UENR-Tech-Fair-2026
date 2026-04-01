@@ -176,6 +176,36 @@
         </div>
     </footer>
 
+    <div id="reg-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="gradient-text" style="font-size: 2.2rem; margin-bottom: 0.5rem;">Reserve Your Spot</h2>
+            <p style="color: var(--text-dim); margin-bottom: 2.5rem;">Join the leading technology gathering in Ghana.</p>
+            <form id="reg-form">
+                <div style="margin-bottom: 1.25rem;">
+                    <label style="display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05rem; margin-bottom: 0.5rem; color: var(--text-dim);">Full Name</label>
+                    <input type="text" class="form-input" placeholder="Enter your full name" required>
+                </div>
+                <div style="margin-bottom: 1.25rem;">
+                    <label style="display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05rem; margin-bottom: 0.5rem; color: var(--text-dim);">Email Address</label>
+                    <input type="email" class="form-input" placeholder="name@company.com" required>
+                </div>
+                <div style="margin-bottom: 2rem;">
+                    <label style="display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05rem; margin-bottom: 0.5rem; color: var(--text-dim);">Ticket Type</label>
+                    <select class="form-input" required>
+                        <option value="">Select your ticket type</option>
+                        <option value="student">Student (Free)</option>
+                        <option value="professional">Professional (GHS 100)</option>
+                        <option value="exhibitor">Exhibitor (GHS 250)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 1rem;">Confirm Reservation</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast">Successfully Reserved! We will send details to your email.</div>
+
     <script src="script.js"></script>
 </body>
 </html>
