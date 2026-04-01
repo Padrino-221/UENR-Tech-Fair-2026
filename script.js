@@ -146,8 +146,10 @@ const handleNavigation = async (url) => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
-        // Swap Content
+        // Swap Content and Identity (Critical for CSS)
         document.title = doc.title;
+        document.body.id = doc.body.id;
+        document.body.className = doc.body.className;
         document.body.innerHTML = doc.body.innerHTML;
         
         // Update URL
