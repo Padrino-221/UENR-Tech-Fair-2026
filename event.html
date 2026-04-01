@@ -10,79 +10,132 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="SVG/Favicon.svg">
     <style>
-        .timeline {
+        /* Premium Timeline Styling */
+        .timeline-wrapper {
             position: relative;
-            max-width: 1000px;
+            padding: 80px 0;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 0;
         }
 
-        .timeline::after {
-            content: '';
+        .timeline-spine {
             position: absolute;
-            width: 1px;
-            background: var(--border-glass);
+            left: 50%;
             top: 0;
             bottom: 0;
-            left: 50%;
-            margin-left: -0.5px;
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            right: -6px;
-            background-color: var(--bg-black);
-            border: 2px solid var(--accent-cyan);
-            top: 25px;
-            border-radius: 50%;
+            width: 2px;
+            background: linear-gradient(180deg, 
+                transparent 0%, 
+                var(--border-glass) 15%, 
+                var(--border-glass) 85%, 
+                transparent 100%
+            );
+            transform: translateX(-50%);
             z-index: 1;
-            box-shadow: 0 0 10px var(--accent-cyan);
         }
 
-        .left { left: 0; text-align: right; }
-        .right { left: 50%; }
-
-        .right::after { left: -6px; }
-
-        .timeline-content {
-            padding: 2.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
+        .timeline-node {
             position: relative;
-            border-radius: var(--radius-md);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 120px;
+            z-index: 2;
+        }
+
+        .timeline-node:last-child {
+            margin-bottom: 0;
+        }
+
+        .node-marker {
+            width: 14px;
+            height: 14px;
+            background: var(--bg-black);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--accent-cyan);
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            transform: translateX(-50%);
+            z-index: 3;
             transition: var(--transition);
         }
 
-        .timeline-item:hover .timeline-content {
+        .timeline-node:hover .node-marker {
+            transform: translateX(-50%) scale(1.5);
+            background: var(--accent-cyan);
+        }
+
+        .event-card {
+            width: 42%;
+            padding: 2.5rem;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(15px);
+            position: relative;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .event-card:hover {
             border-color: var(--accent-cyan);
-            background: rgba(14, 209, 193, 0.05);
             transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(14, 209, 193, 0.1);
         }
 
-        .timeline-time {
-            font-weight: 800;
+        .node-left .event-card { margin-right: 58%; }
+        .node-right .event-card { margin-left: 58%; }
+
+        .time-pill {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(14, 209, 193, 0.1);
             color: var(--accent-cyan);
-            margin-bottom: 0.5rem;
-            display: block;
-            font-size: 0.85rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
             text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(14, 209, 193, 0.2);
         }
 
-        @media screen and (max-width: 768px) {
-            .timeline::after { left: 31px; }
-            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; text-align: left; }
-            .timeline-item::after { left: 25px; }
-            .right { left: 0; }
+        .event-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .event-desc {
+            color: var(--text-dim);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .event-tags {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            padding: 4px 10px;
+            border: 1px solid var(--border-glass);
+            border-radius: 4px;
+        }
+
+        @media screen and (max-width: 992px) {
+            .timeline-spine { left: 30px; transform: none; }
+            .node-marker { left: 30px; transform: translateX(-50%); top: 40px; }
+            .event-card { width: calc(100% - 80px); margin-left: 80px !important; margin-right: 0 !important; }
+            .timeline-node { margin-bottom: 60px; }
         }
     </style>
 </head>
@@ -90,7 +143,7 @@
     <div id="cursor"></div>
 
     <!-- Navigation -->
-    <nav id="navbar" class="scrolled">
+    <nav id="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
                 <img src="SVG/Logo Main.svg" alt="UENR Tech Fair Logo" style="height: 50px;">
@@ -99,7 +152,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="committees.html">Committees</a></li>
-                <li><a href="event.html" class="active" style="color:white;">Event</a></li>
+                <li><a href="event.html">Event</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -112,55 +165,92 @@
         </div>
     </nav>
 
-    <!-- Header -->
+    <!-- Header Section -->
     <header class="section-padding" style="padding-top: 180px; text-align: center;">
         <div class="hero-glow"></div>
         <div class="container">
-            <img src="SVG/Theme.svg" alt="Tech Fair Theme" style="width: 200px; margin-bottom: 2rem;">
-            <h1 style="font-size: 4rem;">The <span class="gradient-text">Main Stage.</span></h1>
-            <p style="color: var(--text-dim); margin: 1rem auto; max-width: 600px;">Explore the full schedule of workshops, keynotes, and demonstrations for the 2026 edition.</p>
+            <img src="SVG/Theme.svg" alt="Tech Fair Theme" style="width: 220px; margin-bottom: 2.5rem; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));">
+            <h1 style="font-size: 4.5rem; line-height: 1.1;">The Main <span class="gradient-text">Stage.</span></h1>
+            <p style="color: var(--text-dim); margin: 1.5rem auto; max-width: 650px; font-size: 1.1rem;">A meticulously crafted sequence of innovation, dialogue, and transformation for the 2026 circuit.</p>
         </div>
     </header>
 
-    <!-- Timeline Flow -->
+    <!-- Timeline Flow Area -->
     <section class="section-padding" style="padding-top: 0;">
         <div class="container">
-            <div class="timeline">
-                <div class="timeline-item left reveal-on-scroll">
-                    <div class="timeline-content">
-                        <span class="timeline-time">08:00 AM - 09:15 AM</span>
-                        <h3>Arrival & Grand Entry</h3>
-                        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 1rem;">Experience the first look at student innovations across the UENR campus exhibitions.</p>
+            <div class="timeline-wrapper">
+                <div class="timeline-spine"></div>
+
+                <!-- Node 1 -->
+                <div class="timeline-node node-left reveal-on-scroll">
+                    <div class="node-marker"></div>
+                    <div class="event-card">
+                        <div class="time-pill">08:00 — 09:15</div>
+                        <h3 class="event-title">Arrival & Grand Entry</h3>
+                        <p class="event-desc">Join the early gathering of brilliance. Attendees and stakeholders converge at the central foyer for badging and the first look at student innovation prototypes.</p>
+                        <div class="event-tags">
+                            <span class="tag">MAIN HALL</span>
+                            <span class="tag">OPEN ACCESS</span>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item right reveal-on-scroll" style="transition-delay: 0.1s;">
-                    <div class="timeline-content" style="background: rgba(0, 61, 200, 0.05); border-color: var(--primary-blue);">
-                        <span class="timeline-time">09:30 AM - 11:00 AM</span>
-                        <h3>Opening & Keynotes</h3>
-                        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 1rem;">Official convocation highlighting the intersection of technology and national policy.</p>
+
+                <!-- Node 2 -->
+                <div class="timeline-node node-right reveal-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="node-marker" style="border-color: var(--primary-blue); box-shadow: 0 0 20px var(--primary-blue);"></div>
+                    <div class="event-card" style="border-left: 2px solid var(--primary-blue);">
+                        <div class="time-pill" style="color: var(--primary-blue); background: rgba(0, 61, 200, 0.1); border-color: rgba(0, 61, 200, 0.2);">09:30 — 11:00</div>
+                        <h3 class="event-title">Opening & Keynotes</h3>
+                        <p class="event-desc">The official convocation featuring industry giants. A strategic deep-dive into how technology and policy are bridging the gap for Ghana's digital future.</p>
+                        <div class="event-tags">
+                            <span class="tag">AUDITORIUM</span>
+                            <span class="tag">LIVE STREAM</span>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item left reveal-on-scroll" style="transition-delay: 0.2s;">
-                    <div class="timeline-content">
-                        <span class="timeline-time">11:15 AM - 01:30 PM</span>
-                        <h3>Innovations & Demo Expo</h3>
-                        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 1rem;">Student innovators pitch real-world solutions directly to industry veterans and investors.</p>
+
+                <!-- Node 3 -->
+                <div class="timeline-node node-left reveal-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="node-marker"></div>
+                    <div class="event-card">
+                        <div class="time-pill">11:15 — 13:30</div>
+                        <h3 class="event-title">Innovation Expo</h3>
+                        <p class="event-desc">The heartbeat of the fair. Student teams pitch live-coded solutions and engineering marvels to a panel of venture capitalists and industry veterans.</p>
+                        <div class="event-tags">
+                            <span class="tag">EXPO HUB</span>
+                            <span class="tag">PITCH DECK</span>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item right reveal-on-scroll" style="transition-delay: 0.3s;">
-                    <div class="timeline-content">
-                        <span class="timeline-time">02:30 PM - 04:30 PM</span>
-                        <h3>The Tech Policy Lounge</h3>
-                        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 1rem;">Strategic dialogue bridge for academia and multinational stakeholders on Ghana's digital agenda.</p>
+
+                <!-- Node 4 -->
+                <div class="timeline-node node-right reveal-on-scroll" style="transition-delay: 0.3s;">
+                    <div class="node-marker"></div>
+                    <div class="event-card">
+                        <div class="time-pill">14:30 — 16:30</div>
+                        <h3 class="event-title">Strategy Dialogues</h3>
+                        <p class="event-desc">Concurrent breakout sessions focusing on Artificial Intelligence, Cybersecurity, and Sustainability in the African context. Led by domain experts.</p>
+                        <div class="event-tags">
+                            <span class="tag">SEMINAR ROOMS</span>
+                            <span class="tag">INTERACTIVE</span>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item left reveal-on-scroll" style="transition-delay: 0.4s;">
-                    <div class="timeline-content" style="border-color: var(--accent-cyan); background: rgba(14, 209, 193, 0.05);">
-                        <span class="timeline-time">05:00 PM - 06:15 PM</span>
-                        <h3>Awards & Gala Finale</h3>
-                        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 1rem;">Recognizing the year's most impactful student innovation and concluding the 2026 fair.</p>
+
+                <!-- Node 5 -->
+                <div class="timeline-node node-left reveal-on-scroll" style="transition-delay: 0.4s;">
+                    <div class="node-marker" style="border-color: var(--accent-cyan); box-shadow: 0 0 20px var(--accent-cyan);"></div>
+                    <div class="event-card" style="background: rgba(14, 209, 193, 0.03); border-color: var(--accent-cyan);">
+                        <div class="time-pill">17:00 — 18:30</div>
+                        <h3 class="event-title">Gala & Awards</h3>
+                        <p class="event-desc">A celebration of digital excellence. Recognizing top innovators and concluding the 2026 Fair with a networking gala for all stakeholders.</p>
+                        <div class="event-tags">
+                            <span class="tag">GRAND BALLROOM</span>
+                            <span class="tag">BLACK TIE</span>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -203,6 +293,26 @@
             </div>
         </div>
     </footer>
+
+    <!-- Register Modal Template (Shared) -->
+    <div id="reg-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Reserve Your Slot</h2>
+            <p style="color: var(--text-dim); margin-bottom: 2rem;">Join the digital revolution. Limited seats available for the 2026 circuit.</p>
+            <form id="reg-form">
+                <input type="text" class="form-input" placeholder="Full Name" required style="margin-bottom: 1.2rem;">
+                <input type="email" class="form-input" placeholder="Email Address" required style="margin-bottom: 1.2rem;">
+                <select class="form-input" style="margin-bottom: 2rem; background: var(--bg-black);">
+                    <option value="student">Student Innovator</option>
+                    <option value="industry">Industry Participant</option>
+                    <option value="investor">Venture Capitalist</option>
+                </select>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.2rem;">Confirm Reservation</button>
+            </form>
+        </div>
+    </div>
+    <div id="toast">Reservation Successful! Check your email.</div>
 
     <script src="script.js"></script>
 </body>
