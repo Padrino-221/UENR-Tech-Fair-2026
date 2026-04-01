@@ -113,3 +113,38 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+// 7. Hero Carousel Logic
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.carousel-dot');
+let currentSlide = 0;
+let carouselInterval;
+
+const showSlide = (index) => {
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+};
+
+const nextSlide = () => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+};
+
+const startCarousel = () => {
+    carouselInterval = setInterval(nextSlide, 5000); // 5 seconds
+};
+
+if (slides.length > 0) {
+    startCarousel();
+    
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            clearInterval(carouselInterval);
+            currentSlide = parseInt(dot.getAttribute('data-index'));
+            showSlide(currentSlide);
+            startCarousel();
+        });
+    });
+}
