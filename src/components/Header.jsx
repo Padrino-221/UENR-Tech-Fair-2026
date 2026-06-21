@@ -55,10 +55,11 @@ export default function Header({ onOpenModal }) {
               </AnimatePresence>
             </li>
           </ul>
-          <button className="btn btn-primary btn-header" onClick={onOpenModal}>
-            Repping Flyer <i className="fas fa-arrow-right"></i>
-          </button>
         </nav>
+
+        <button className="btn btn-primary btn-header" onClick={onOpenModal}>
+          Repping Flyer <i className="fas fa-arrow-right"></i>
+        </button>
 
         <button className="mobile-menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
           <i className={`fas ${menuOpen ? 'fa-times' : 'fa-bars'}`}></i>

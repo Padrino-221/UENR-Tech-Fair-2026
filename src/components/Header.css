@@ -23,7 +23,8 @@
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  flex: 1;
 }
 
 .nav-list {
@@ -144,6 +145,7 @@
 @media (max-width: 768px) {
   .site-header { max-width: calc(100% - 16px); padding: 8px 0; margin: 10px auto 0; }
   .main-nav { display: none; }
+  .btn-header { display: none !important; }
   .mobile-menu-toggle { display: block; }
   .header-container { padding: 0 16px; }
   .mobile-menu { padding: 0 16px; }
