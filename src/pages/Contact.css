@@ -5,6 +5,7 @@
 .contact-form-section > .ScrollReveal p { color: var(--gray-600); margin-bottom: 28px; }
 
 .contact-form { display: flex; flex-direction: column; gap: 20px; }
+.contact-form .btn { justify-content: center; }
 .form-row-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
 .contact-success { text-align: center; padding: 40px 20px; }
