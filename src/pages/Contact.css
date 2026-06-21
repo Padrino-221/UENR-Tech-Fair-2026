@@ -1,0 +1,58 @@
+.contact-main { background: var(--white); border-bottom: 1px solid var(--gray-100); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+
+.contact-form-section h2 { margin-bottom: 8px; }
+.contact-form-section > .ScrollReveal p { color: var(--gray-600); margin-bottom: 28px; }
+
+.contact-form { display: flex; flex-direction: column; gap: 20px; }
+.form-row-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.contact-success { text-align: center; padding: 40px 20px; }
+.contact-success-icon { font-size: 3rem; color: var(--secondary); margin-bottom: 16px; }
+.contact-success h3 { margin-bottom: 8px; color: var(--gray-800); }
+.contact-success p { color: var(--gray-600); margin-bottom: 24px; }
+
+.contact-info-section { display: flex; flex-direction: column; gap: 16px; }
+.contact-info-card { display: flex; gap: 16px; align-items: flex-start; padding: 20px; border: 1px solid var(--gray-100); border-radius: var(--radius-card); transition: border-color 0.2s; }
+.contact-info-card:hover { border-color: var(--secondary); }
+.cic-icon { font-size: 1.3rem; color: var(--secondary); flex-shrink: 0; margin-top: 2px; }
+.contact-info-card h4 { font-size: 0.95rem; margin-bottom: 4px; color: var(--gray-800); font-family: var(--font-alt); font-weight: 600; }
+.contact-info-card p, .contact-info-card a { color: var(--gray-600); font-size: 0.85rem; line-height: 1.6; }
+.contact-info-card a:hover { color: var(--secondary); }
+
+.office-hour { display: flex; justify-content: space-between; gap: 16px; font-size: 0.85rem; padding: 4px 0; color: var(--gray-600); }
+
+.contact-social { padding: 20px; border: 1px solid var(--gray-100); border-radius: var(--radius-card); transition: border-color 0.2s; }
+.contact-social:hover { border-color: var(--secondary); }
+.contact-social h4 { font-size: 0.95rem; margin-bottom: 12px; color: var(--gray-800); font-family: var(--font-alt); }
+.contact-social .social-links { display: flex; gap: 10px; }
+.contact-social .social-links a { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gray-100); border-radius: var(--radius-sm); color: var(--gray-600); transition: all 0.2s; }
+.contact-social .social-links a:hover { background: var(--secondary); color: var(--white); border-color: var(--secondary); }
+
+/* FAQ */
+.faq-section { background: var(--off-white); }
+.faq-list { max-width: 700px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--gray-100); }
+.faq-question { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 18px 0; background: none; border: none; cursor: pointer; font-family: var(--font-alt); font-size: 0.95rem; font-weight: 600; color: var(--gray-800); text-align: left; }
+.faq-question i { font-size: 0.8rem; color: var(--gray-600); transition: transform 0.2s; }
+.faq-question i.rotated { transform: rotate(180deg); }
+.faq-answer { overflow: hidden; }
+.faq-answer p { padding: 0 0 18px; color: var(--gray-600); font-size: 0.9rem; line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-row-2col { grid-template-columns: 1fr; }
+}
+
+/* Find Us on Campus */
+.campus-section { background: var(--white); border-bottom: 1px solid var(--gray-100); }
+.campus-map { border-radius: var(--radius-container); overflow: hidden; border: 1px solid var(--gray-100); margin-bottom: 20px; }
+.campus-iframe { width: 100%; height: 400px; display: block; border: none; }
+.campus-info-card { display: flex; align-items: flex-start; gap: 14px; padding: 20px; border: 1px solid var(--gray-100); border-radius: var(--radius-card); max-width: 500px; margin: 0 auto; transition: border-color 0.2s; }
+.campus-info-card:hover { border-color: var(--secondary); }
+.campus-info-card i { font-size: 1.3rem; color: var(--secondary); flex-shrink: 0; margin-top: 2px; }
+.campus-info-card p { color: var(--gray-600); font-size: 0.85rem; line-height: 1.6; margin: 0; }
+
+@media (max-width: 768px) {
+  .campus-iframe { height: 280px; }
+}
