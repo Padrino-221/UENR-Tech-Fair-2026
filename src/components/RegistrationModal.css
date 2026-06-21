@@ -120,9 +120,9 @@
 
 .profile-upload-area:hover { border-color: var(--secondary); background: rgba(13,209,193,0.05); }
 
-.upload-placeholder { text-align: center; color: var(--gray-600); }
-.upload-placeholder i { font-size: 1.8rem; display: block; margin-bottom: 4px; color: var(--primary); }
-.upload-placeholder span { font-size: 0.7rem; }
+.upload-placeholder { text-align: center; color: var(--gray-600); padding: 8px; }
+.upload-placeholder i { font-size: 1.6rem; display: block; margin-bottom: 2px; color: var(--primary); }
+.upload-placeholder span { font-size: 0.6rem; line-height: 1.2; display: block; word-break: break-word; }
 
 .profile-preview { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 

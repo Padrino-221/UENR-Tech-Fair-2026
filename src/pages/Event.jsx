@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
+import { useModal } from '../components/ModalContext';
 import { SCHEDULE, TICKETS, COMPETITIONS, WHY_ATTEND, EVENT_STATS, FLYERS, EVENT_SPEAKERS, SPEAKER_CATEGORIES } from '../data/content';
 import './Event.css';
 
@@ -40,6 +41,7 @@ function CountdownTimer() {
 }
 
 export default function Event() {
+  const { openModal } = useModal();
   const [speakerFilter, setSpeakerFilter] = useState('All');
   const [loadedSpeakers, setLoadedSpeakers] = useState(6);
   const [flyerIndex, setFlyerIndex] = useState(0);
@@ -138,7 +140,7 @@ export default function Event() {
               <div className="sidebar-card registration-card">
                 <h3>Ready to Join?</h3>
                 <p>Secure your spot at Ghana's biggest tech event</p>
-                <button className="btn btn-primary btn-full">Get a Repping Flyer <i className="fas fa-ticket-alt"></i></button>
+                <button className="btn btn-primary btn-full" onClick={openModal}>Get a Repping Flyer <i className="fas fa-ticket-alt"></i></button>
                 <a href="https://forms.gle/y9K7fzXdBpVB9WWd7" target="_blank" className="btn btn-secondary btn-full">Register - UENR ITDS STUDENT <i className="fas fa-arrow-right"></i></a>
                 <a href="https://forms.gle/QWuHC6288mQm34n7A" target="_blank" className="btn btn-secondary btn-full">Register - EXTERNAL PARTICIPANT <i className="fas fa-arrow-right"></i></a>
                 <p className="spots-left"><i className="fas fa-users"></i> Limited spots available</p>
