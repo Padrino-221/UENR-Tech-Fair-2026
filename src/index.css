@@ -273,7 +273,8 @@ section { padding: var(--section-spacing) 0; }
   :root { --section-spacing: 50px; }
   section { padding: var(--section-spacing) 0; }
   .section-title { font-size: 1.6rem; }
-  .section-header { margin-bottom: 28px; }
+  .section-header { margin-bottom: 28px; text-align: left; }
+  .section-header .section-subtitle { margin-left: 0; }
   .btn { padding: 8px 20px; font-size: 0.85rem; }
   .page-hero { padding: 60px 0 50px; }
   .page-hero h1 { font-size: 1.6rem; }

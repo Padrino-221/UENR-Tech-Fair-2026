@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { IMAGES } from '../data/content';
+import { IMAGES, imgFallback } from '../data/content';
 import ScrollReveal from './ScrollReveal';
 import './GallerySlider.css';
 
@@ -26,7 +26,7 @@ export default function GallerySlider() {
           <div className="gallery-slider" ref={sliderRef}>
             {IMAGES.gallery.map((src, i) => (
               <div key={i} className="gallery-slide">
-                <img src={src} alt={`Event Highlight ${i + 1}`} loading="lazy" onError={e => { e.target.src = 'https://via.placeholder.com/600x400?text=Gallery'; }} />
+                <img src={src} alt={`Event Highlight ${i + 1}`} loading="lazy" onError={e => imgFallback(e, 'Gallery')} />
                 <div className="gallery-overlay">
                   <span>Ghana's Biggest Tech Fair</span>
                 </div>

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
-import { IMAGES } from '../data/content';
+import { IMAGES, imgFallback } from '../data/content';
 import './Gallery.css';
 
 export default function Gallery() {
@@ -55,7 +55,7 @@ export default function Gallery() {
             {visible.map((src, i) => (
               <ScrollReveal key={i} delay={(i % 8) * 0.05}>
                 <div className="gallery-item" onClick={() => setLightbox(i)}>
-                  <img src={src} alt={`Gallery ${i + 1}`} loading="lazy" onError={e => { e.target.src = 'https://via.placeholder.com/400x300?text=Gallery'; }} />
+                  <img src={src} alt={`Gallery ${i + 1}`} loading="lazy" onError={e => imgFallback(e, 'Gallery')} />
                   <div className="gallery-item-overlay">
                     <i className="fas fa-search-plus"></i>
                   </div>
@@ -104,7 +104,7 @@ export default function Gallery() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               onClick={e => e.stopPropagation()}
-              onError={e => { e.target.src = 'https://via.placeholder.com/800x600?text=Gallery+Image'; }}
+              onError={e => imgFallback(e, 'Gallery Image')}
             />
             <button className="lightbox-nav lightbox-next" onClick={e => { e.stopPropagation(); setLightbox(p => (p + 1) % images.length); }}>
               <i className="fas fa-chevron-right"></i>

@@ -6,6 +6,7 @@
 
 .contact-form { display: flex; flex-direction: column; gap: 20px; }
 .contact-form .btn { justify-content: center; }
+.form-error { color: #e74c3c; font-size: 0.85rem; text-align: center; }
 .form-row-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
 .contact-success { text-align: center; padding: 40px 20px; }

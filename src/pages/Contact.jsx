@@ -5,14 +5,32 @@ import ScrollReveal from '../components/ScrollReveal';
 import { CONTACT_INFO, OFFICE_HOURS, FAQ } from '../data/content';
 import './Contact.css';
 
+const FORMSPREE_ID = 'REPLACE_AT_FORMSREE'; // go to https://formspree.io, create a form, paste its ID here
+
 export default function Contact() {
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', phone: '', subject: '', message: '' });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(null);
   const [openFaq, setOpenFaq] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
+    setSending(true);
+    setError(null);
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error('Failed to send');
+      setSent(true);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -75,7 +93,8 @@ export default function Contact() {
                       <label htmlFor="message">Message *</label>
                       <textarea id="message" rows="5" required value={form.message} onChange={e => setForm(p => ({ ...p, message: e.target.value }))}></textarea>
                     </div>
-                    <button type="submit" className="btn btn-primary">Send Message <i className="fas fa-paper-plane"></i></button>
+                    {error && <p className="form-error">{error}</p>}
+                    <button type="submit" className="btn btn-primary" disabled={sending}>{sending ? 'Sending...' : 'Send Message'} <i className="fas fa-paper-plane"></i></button>
                   </motion.form>
                 ) : (
                   <motion.div key="success" className="contact-success" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
@@ -127,7 +146,7 @@ export default function Contact() {
                   <h4>Follow Us</h4>
                   <div className="social-links">
                     <a href="#"><i className="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i className="fab fa-twitter"></i></a>
+                    <a href="#"><i className="fab fa-x-twitter"></i></a>
                     <a href="#"><i className="fab fa-instagram"></i></a>
                     <a href="#"><i className="fab fa-facebook-f"></i></a>
                     <a href="#"><i className="fab fa-youtube"></i></a>

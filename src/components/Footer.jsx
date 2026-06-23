@@ -13,7 +13,7 @@ export default function Footer() {
             <p>Empowering the next generation of tech leaders through innovation, collaboration, and industry engagement.</p>
             <div className="social-links">
               <a href="#"><i className="fab fa-linkedin-in"></i></a>
-              <a href="#"><i className="fab fa-twitter"></i></a>
+              <a href="#"><i className="fab fa-x-twitter"></i></a>
               <a href="#"><i className="fab fa-instagram"></i></a>
               <a href="#"><i className="fab fa-facebook-f"></i></a>
             </div>

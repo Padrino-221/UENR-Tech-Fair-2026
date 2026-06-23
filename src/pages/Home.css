@@ -134,12 +134,14 @@
 .speaker-image-wrapper {
   overflow: hidden;
   height: 260px;
+  background: var(--gray-100);
 }
 
 .speaker-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%;
   display: block;
 }
 

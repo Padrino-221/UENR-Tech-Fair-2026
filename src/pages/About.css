@@ -81,11 +81,15 @@
 @media (max-width: 768px) {
   .journey-content { grid-template-columns: 1fr; }
   .milestones { flex-direction: column; }
+  .milestone-card { text-align: left; }
+  .journey-header { text-align: left; }
   .vm-grid { grid-template-columns: 1fr; }
   .goal-content { grid-template-columns: 1fr; gap: 30px; }
   .founder-content { grid-template-columns: 1fr; }
   .founder-image { max-width: 300px; margin: 0 auto; }
   .itds-features { grid-template-columns: 1fr; }
+  .itds-feature-card { text-align: left; }
+  .itds-header { text-align: left; }
   .itds-stats { flex-direction: column; gap: 20px; }
   .editions-grid { grid-template-columns: repeat(2, 1fr); }
 }

@@ -1,5 +1,12 @@
 const BASE = 'https://www.uenrtechfair.itdsuenr.com';
 
+export function imgFallback(e, text = 'Image') {
+  const w = e.target.width || e.target.clientWidth || 400;
+  const h = e.target.height || e.target.clientHeight || 300;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><rect fill="#e2e8f0" width="${w}" height="${h}"/><text fill="#94a3b8" font-family="sans-serif" font-size="${Math.min(Math.min(w, h) * 0.08, 30)}" x="${w/2}" y="${h/2}" text-anchor="middle" dominant-baseline="middle">${text}</text></svg>`;
+  e.target.src = `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}
+
 export const IMAGES = {
   logo: `${BASE}/assets/images/icons/logo.png`,
   hero: [

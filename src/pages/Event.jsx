@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import PageTransition from '../components/PageTransition';
 import ScrollReveal from '../components/ScrollReveal';
 import { useModal } from '../components/ModalContext';
-import { SCHEDULE, TICKETS, COMPETITIONS, WHY_ATTEND, EVENT_STATS, FLYERS, EVENT_SPEAKERS, SPEAKER_CATEGORIES } from '../data/content';
+import { SCHEDULE, TICKETS, COMPETITIONS, WHY_ATTEND, EVENT_STATS, FLYERS, EVENT_SPEAKERS, SPEAKER_CATEGORIES, imgFallback } from '../data/content';
 import './Event.css';
 
 function CountdownTimer() {
@@ -56,7 +56,9 @@ export default function Event() {
         <div className="container">
           <h1>UENR Tech Fair 2026</h1>
           <p>Innovate. Connect. Transform.</p>
-          <a href="#" className="btn btn-outline-light">Download Program Outline <i className="fas fa-download"></i></a>
+          <a href="/schedule/UENR-Tech-Fair-2026-Program-Outline.pdf" download className="btn btn-outline-light">
+            Download Program Outline <i className="fas fa-download"></i>
+          </a>
         </div>
       </section>
 
@@ -254,7 +256,7 @@ export default function Event() {
               <ScrollReveal key={i} delay={(i % 6) * 0.06}>
                 <div className="speaker-gallery-card">
                   <div className="sg-image-wrapper">
-                    <img src={sp.image} alt={sp.name} loading="lazy" onError={e => { e.target.src = 'https://via.placeholder.com/300x360?text=' + encodeURIComponent(sp.name.split(' ')[1]); }} />
+                    <img src={sp.image} alt={sp.name} loading="lazy" onError={e => imgFallback(e, sp.name.split(' ')[1])} />
                     <div className="sg-category">{sp.category}</div>
                   </div>
                   <div className="sg-info">

@@ -237,7 +237,7 @@ export default function RegistrationModal({ open, onClose }) {
                       </div>
                       <div className="share-card-body">
                         <div className="participant-photo">
-                          <img src={croppedPreview || 'https://via.placeholder.com/120'} alt="Participant" />
+                          <img src={croppedPreview || "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><rect fill="#e2e8f0" width="120" height="120"/><text fill="#94a3b8" font-family="sans-serif" font-size="14" x="60" y="60" text-anchor="middle" dominant-baseline="middle">Photo</text></svg>')} alt="Participant" />
                         </div>
                         <div className="participant-name">{form.fullName}</div>
                       </div>

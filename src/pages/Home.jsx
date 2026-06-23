@@ -3,7 +3,7 @@ import ScrollReveal from '../components/ScrollReveal';
 import HeroSlider from '../components/HeroSlider';
 import StatsCounter from '../components/StatsCounter';
 import GallerySlider from '../components/GallerySlider';
-import { HIGHLIGHTS, SPEAKERS, NEWS, IMAGES } from '../data/content';
+import { HIGHLIGHTS, SPEAKERS, NEWS, IMAGES, imgFallback } from '../data/content';
 import './Home.css';
 
 export default function Home() {
@@ -83,7 +83,7 @@ function HomeContent() {
               <ScrollReveal key={i} delay={i * 0.06}>
                 <div className="speaker-card">
                   <div className="speaker-image-wrapper">
-                    <img src={speaker.image} alt={speaker.name} className="speaker-image" loading="lazy" onError={e => { e.target.src = 'https://via.placeholder.com/300x360?text=' + encodeURIComponent(speaker.name.split(' ')[1]); }} />
+                    <img src={speaker.image} alt={speaker.name} className="speaker-image" loading="lazy" onError={e => imgFallback(e, speaker.name.split(' ')[1])} />
                   </div>
                   <div className="speaker-info">
                     <h3>{speaker.name}</h3>
